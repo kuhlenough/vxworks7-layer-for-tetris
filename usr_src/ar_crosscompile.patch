@@ -1,0 +1,100 @@
+diff -Nrup vitetris-0.57.orig/src/draw/Makefile vitetris-0.57/src/draw/Makefile
+--- vitetris-0.57.orig/src/draw/Makefile	2008-08-18 05:09:46.000000000 -0400
++++ vitetris-0.57/src/draw/Makefile	2014-03-30 22:12:22.356646300 -0400
+@@ -4,7 +4,7 @@ OBJS = draw.o draw_menu.o draw2p.o draw2
+ HEADERS = draw.h internal.h ../textgfx/textgfx.h
+ 
+ draw.a: $(OBJS)
+-	ar rs draw.a $(OBJS)
++	$(AR) rs draw.a $(OBJS)
+ 
+ draw.o: draw.c $(HEADERS) ../game/tetris.h ../hiscore.h \
+ 			  ../netw/sock.h ../src-conf.mk
+diff -Nrup vitetris-0.57.orig/src/game/Makefile vitetris-0.57/src/game/Makefile
+--- vitetris-0.57.orig/src/game/Makefile	2008-09-08 21:28:09.000000000 -0400
++++ vitetris-0.57/src/game/Makefile	2014-03-30 22:12:24.947646300 -0400
+@@ -4,7 +4,7 @@ OBJS = tetris.o $(tetris2p_obj) game.o w
+ HEADERS = tetris.h ../timer.h ../input/input.h ../draw/draw.h
+ 
+ game.a: $(OBJS)
+-	ar rs game.a $(OBJS)
++	$(AR) rs game.a $(OBJS)
+ 
+ tetris.o: tetris.c $(HEADERS)
+ 	$(CC) $(CCFLAGS) -I..  -c tetris.c
+diff -Nrup vitetris-0.57.orig/src/input/Makefile vitetris-0.57/src/input/Makefile
+--- vitetris-0.57.orig/src/input/Makefile	2008-09-09 13:23:39.000000000 -0400
++++ vitetris-0.57/src/input/Makefile	2014-03-30 22:12:31.726646300 -0400
+@@ -6,19 +6,19 @@ default: $(BACKEND)
+ 
+ unixterm: $(OBJS) inp_unixterm.o escseq.o select.o $(joylinux_obj)
+ 	rm -f input.a
+-	ar rcs input.a $(OBJS) inp_unixterm.o escseq.o select.o $(joylinux_obj)
++	$(AR) rcs input.a $(OBJS) inp_unixterm.o escseq.o select.o $(joylinux_obj)
+ 
+ curses: $(OBJS) inp_curses.o $(joylinux_obj) $(select_obj)
+ 	rm -f input.a
+-	ar rcs input.a $(OBJS) inp_curses.o $(joylinux_obj) $(select_obj)
++	$(AR) rcs input.a $(OBJS) inp_curses.o $(joylinux_obj) $(select_obj)
+ 
+ conio: $(OBJS) inp_con.o
+ 	rm -f input.a
+-	ar rcs input.a $(OBJS) inp_con.o
++	$(AR) rcs input.a $(OBJS) inp_con.o
+ 
+ allegro: $(OBJS) inp_allegro.o $(select_obj)
+ 	rm -f input.a
+-	ar rcs input.a $(OBJS) inp_allegro.o $(select_obj)
++	$(AR) rcs input.a $(OBJS) inp_allegro.o $(select_obj)
+ 
+ input.o: input.c input.h keyboard.h joystick.h \
+ 	 ../timer.h ../draw/draw.h ../game/tetris.h ../netw/sock.h \
+diff -Nrup vitetris-0.57.orig/src/menu/Makefile vitetris-0.57/src/menu/Makefile
+--- vitetris-0.57.orig/src/menu/Makefile	2008-10-12 19:13:11.000000000 -0400
++++ vitetris-0.57/src/menu/Makefile	2014-03-30 22:12:34.178646300 -0400
+@@ -12,11 +12,11 @@ HEADERS = menu.h ../input/input.h ../tex
+ all: menu.a $(menuext_lib)
+ 
+ menu.a: $(OBJS)
+-	ar rs menu.a $(OBJS)
++	$(AR) rs menu.a $(OBJS)
+ 
+ menuext.a: $(EXT_OBJS)
+ 	rm -f menuext.a
+-	ar rcs menuext.a $(EXT_OBJS)
++	$(AR) rcs menuext.a $(EXT_OBJS)
+ 
+ menucore.o: menucore.c $(HEADERS) ../src-conf.mk
+ 	$(CC) $(CCFLAGS) $(DNO_MENU) -c menucore.c 
+diff -Nrup vitetris-0.57.orig/src/netw/Makefile vitetris-0.57/src/netw/Makefile
+--- vitetris-0.57.orig/src/netw/Makefile	2008-10-16 14:39:35.000000000 -0400
++++ vitetris-0.57/src/netw/Makefile	2014-03-30 22:12:41.024646300 -0400
+@@ -6,12 +6,12 @@ config_h = ../config.h ../config2.h
+ all: $(netw_lib)$(inet_obj)
+ 
+ netw.ainet.o: $(OBJS) comm_inet.o
+-	-ar dc netw.a no_inet.o
+-	ar rs netw.a $(OBJS) comm_inet.o
++	-$(AR) dc netw.a no_inet.o
++	$(AR) rs netw.a $(OBJS) comm_inet.o
+ 
+ netw.a: $(OBJS) no_inet.o ../src-conf.mk
+-	-ar dc netw.a inet.o comm_inet.o
+-	ar rs netw.a $(OBJS) no_inet.o
++	-$(AR) dc netw.a inet.o comm_inet.o
++	$(AR) rs netw.a $(OBJS) no_inet.o
+ 
+ socket.o: socket.c sock.h internal.h ../input/input.h $(config_h)
+ 
+diff -Nrup vitetris-0.57.orig/src/textgfx/Makefile vitetris-0.57/src/textgfx/Makefile
+--- vitetris-0.57.orig/src/textgfx/Makefile	2008-08-18 05:12:29.000000000 -0400
++++ vitetris-0.57/src/textgfx/Makefile	2014-03-30 22:12:42.326646300 -0400
+@@ -5,7 +5,7 @@ OBJS = block.o win.o print.o ibmgfx.o \
+ 
+ textgfx.a: $(OBJS)
+ 	rm -f textgfx.a
+-	ar rcs textgfx.a $(OBJS)
++	$(AR) rcs textgfx.a $(OBJS)
+ 
+ term.o: term.c textgfx.h ../options.h ../config.h
+ 	$(CC) $(CCFLAGS) -I.. -c term.c

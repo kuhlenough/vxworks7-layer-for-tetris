@@ -1,0 +1,27 @@
+/* layer.vsbl file for Tetris layer  */
+/*
+ * Copyright (c) 2013 Wind River Systems, Inc.
+ *
+ 
+ */
+
+/*
+Modification history
+--------------------
+01a,28march14,brk  Created.
+*/
+
+
+Layer TETRIS {
+ SYNOPSIS     viTetris game
+ VERSION      0.57.0.0
+ FEATURE      OPEN_SOURCE
+ VENDOR       Wind River 
+ VSB_REQUIRES    RTP
+ LAYER_REQUIRES  USER_MANAGEMENT UNIX
+ OPTIONAL     YES
+ DEFAULT      NO
+ FASTBUILD    NO
+ DOC_BUILD    NO
+ HELP 		 The classic Tetris game implemented in terminal fonts
+}

@@ -1,0 +1,11 @@
+--- vitetris-0.57/config.mk.orig	2009-06-01 08:02:48.000000000 -0400
++++ vitetris-0.57/config.mk	2014-03-28 11:42:25.075713371 -0400
+@@ -28,7 +28,7 @@ INPUT_SYS = unixterm
+ #ALLEGRO = y
+ #XLIB = y
+ #XLIB_INC =
+-LDFLAGS =
++#LDFLAGS =
+ LDLIBS  = $(LIBS)
+ 
+ # DOS millisecond granularity
