@@ -98,3 +98,5 @@ diff -Nrup vitetris-0.57.orig/src/textgfx/Makefile vitetris-0.57/src/textgfx/Mak
  
  term.o: term.c textgfx.h ../options.h ../config.h
  	$(CC) $(CCFLAGS) -I.. -c term.c
+
+ 	

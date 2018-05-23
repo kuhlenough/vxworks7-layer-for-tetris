@@ -29,5 +29,5 @@ tetris_install : tetris_build
 tetris_build : $(AUTO_INCLUDE_VSB_CONFIG_QUOTE) $(VXWORKS_ENV_SH)  $(__AUTO_INCLUDE_LIST_UFILE) 
 	@echo building $(VSBL_NAME): building $(VXE)
 	@source ./$(VXWORKS_ENV_SH) && \
-	export LDFLAGS='$(LDFLAGS) $(LDFLAGS_STATIC)' &&  \
+	export LDFLAGS='$(CRT0_OBJ) $(LDFLAGS) $(LDFLAGS_STATIC)' &&  \
 	make -f Makefile 

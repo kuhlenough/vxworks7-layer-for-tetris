@@ -6,7 +6,7 @@
 #
 # modification history
 # -------------------- 
-# 01a,06may13,brk  create
+# 06may13,brk  create
 
 PRE_BUILD_DIRS = usr_src
 

@@ -1,0 +1,11 @@
+--- vitetris-0.57/src/Makefile	2008-10-24 06:17:28.000000000 -0400
++++ vitetris-0.57/src/Makefile	2018-05-23 15:35:27.000000000 -0400
+@@ -6,7 +6,7 @@
+ #OBJS += ../icon.o
+ 
+ tetris: $(OBJS) libs ../config.mk
+-	$(CC) -o tetris $(OBJS) game.a $(menuext_lib) menu.a $(netw_lib) input.a draw.a textgfx.a $(LDFLAGS) $(LDLIBS)
++	$(LD) -o tetris $(OBJS) game.a $(menuext_lib) menu.a $(netw_lib) input.a draw.a textgfx.a $(LDFLAGS) $(LDLIBS)
+ 
+ main.o: main.c timer.h cfgfile.h options.h lang.h focus.h \
+ 	textgfx/textgfx.h input/input.h game/tetris.h game/game.h \
